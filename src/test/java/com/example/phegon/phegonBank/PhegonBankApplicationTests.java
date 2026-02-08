@@ -1,0 +1,13 @@
+package com.example.phegon.phegonBank;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class PhegonBankApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
