@@ -10,6 +10,7 @@ public interface RoleService {
     Response<RoleEntity> createRole(RoleEntity roleRequest);
     Response<RoleEntity> updateRole(RoleEntity roleRequest);
     Response<List<RoleEntity>> getAllRoles();
-    Response<RoleEntity> deleteRole(Long id);
+//   <?> == <Any>
+    Response<?> deleteRole(Long id);
 
 }
