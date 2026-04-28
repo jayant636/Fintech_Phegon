@@ -1,6 +1,7 @@
 package com.example.phegon.phegonBank.auth_user.service.impl;
 
 import com.example.phegon.phegonBank.account.entity.AccountEntity;
+import com.example.phegon.phegonBank.account.service.AccountService;
 import com.example.phegon.phegonBank.auth_user.dtos.LoginRequestDto;
 import com.example.phegon.phegonBank.auth_user.dtos.LoginResponseDto;
 import com.example.phegon.phegonBank.auth_user.dtos.RegistrationRequestDto;
@@ -42,6 +43,7 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
     private final NotificationService notificationService;
+    private final AccountService accountService;
 
     private final CodeGenerator codeGenerator;
     private final PasswordResetRepository passwordResetRepository;
@@ -82,9 +84,9 @@ public class AuthServiceImpl implements AuthService {
 
         User savedUser = userRepository.save(user);
 
-        //TODO Auto generate an acount number for the user
+        //Create acount number for the user
 
-//        AccountEntity savedaccount = accountService.createAccount(AccountType.SAVINGS,savedUser);
+        AccountEntity savedaccount = accountService.createAccount(AccountType.SAVINGS,savedUser);
 
         //TODO Send a welcome email of the user
         Map<String, Object> vars = new HashMap<>();
@@ -119,7 +121,7 @@ public class AuthServiceImpl implements AuthService {
         return Response.<String>builder()
                 .statusCode(HttpStatus.OK.value())
                 .message("Your account has been created successfully")
-//                .data("Email of your account details has been sent to you. Your account number is :"+ savedaccount.getAccountNumber())
+                .data("Email of your account details has been sent to you. Your account number is :"+ savedaccount.getAccountNumber())
                 .build();
 
     }
